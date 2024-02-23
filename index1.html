@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <style>
+    body {
+      font-family: system-ui;
+      background-color: rgb(29, 29, 29);
+      margin: 0; /* Ajout d'une marge pour éviter le débordement du canvas */
+    }
+    #canvas{
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.js"></script>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    // Initialize canvas
+    const canvas = document.getElementById("canvas");
+
+    // Maintenant, vous pouvez utiliser THREE et GLTFLoader dans votre code.
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
+
+     // Initialize renderer with the canvas
+     const renderer = new THREE.WebGLRenderer({ canvas });
+
+     camera.position.set(0, 0, 2);
+
+
+    //  Cube
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+
+    const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+    const mesh = new THREE.Mesh(geometry, material);
+
+    scene.add(mesh);
+
+    
+
+// Anime All
+    function loop() {
+      requestAnimationFrame(loop);
+      mesh.rotation.y += 0.01; // Réduisez la vitesse de rotation si nécessaire
+      renderer.render(scene, camera);
+    }
+
+    loop();
+  </script>
+</body>
+
+</html>

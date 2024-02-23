@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <style>
+    body {
+      font-family: system-ui;
+      background-color: rgb(29, 29, 29);
+      margin: 0;
+      /* Ajout d'une marge pour éviter le débordement du canvas */
+    }
+
+    #canvas {
+      width: 1000px;
+      height: 500px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.js"></script>
+</head>
+
+<body>
+  <img id="myImage" src="sujet1.jpg" style="display: none;" />
+  <canvas id="canvas"></canvas>
+  <script>
+    // Initialize canvas
+    const canvas = document.getElementById("canvas");
+
+    // Maintenant, vous pouvez utiliser THREE et GLTFLoader dans votre code.
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
+
+    // Initialize renderer with the canvas
+    const renderer = new THREE.WebGLRenderer({ canvas });
+
+
+
+    //  Cube
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+
+    const texture = new THREE.TextureLoader().load('c:\Users\HP\OneDrive\Documents\GitHub\E_Commerce\Axel.jpg');
+
+    const material = new THREE.MeshPhongMaterial({ map: texture });
+
+    const mesh = new THREE.Mesh(geometry, material);
+
+    const light = new THREE.PointLight(0xeeeeee)
+
+    scene.add(mesh);
+    scene.add(light);
+
+    camera.position.set(0, 0, 2);
+    light.position.set(0, 0, 2);
+
+    // //  Cube
+    // const geometry2 = new THREE.BoxGeometry(1, 1, 1);
+
+    // const material2 = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+    // const mesh2 = new THREE.Mesh(geometry2, material2);
+
+    // scene.add(mesh2);
+
+
+    // fin cube
+
+
+
+
+    const loader = new THREE.GLTFLoader();
+        let gltfModel;
+
+        loader.load('scene.gltf', (gltf) => {
+          gltfModel = gltf.scene;
+          scene.add(gltfModel);
+          gltfModel.rotation.x = Math.PI / 2;
+          gltfModel.scale.set(1, 1, 1);
+        }, undefined, (error) => {
+          console.error('Erreur lors du chargement du modèle GLTF', error);
+        });
+
+    // ************************** Lith Add *********************************
+    // Ambient light
+    const ambientLight = new THREE.AmbientLight(0x404040);
+    scene.add(ambientLight);
+
+    // Directional light (optional)
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(1, 1, 1);
+    scene.add(directionalLight);
+
+
+
+    // Anime All
+    function loop() {
+      requestAnimationFrame(loop);
+      if (gltfModel) {
+        gltfModel.rotateY(-0.01);
+                gltfModel.rotation.y += 0.01;}
+      mesh.rotation.y += 0.01; // Réduisez la vitesse de rotation si nécessaire
+
+
+      // ************************* Anim Light Add *******************
+      // Move the light in a circular path (optional)
+      const time = performance.now() * 0.001;
+      light.position.x = Math.sin(time) * 2;
+      light.position.y = Math.cos(time) * 2;
+      renderer.render(scene, camera);
+    }
+
+    loop();
+  </script>
+</body>
+
+</html>
