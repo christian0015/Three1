@@ -133,13 +133,18 @@
       width: 90%;
       margin-top: 100px;
       height: 200px;
-      gap: 50px;
+      gap: 20px;
       padding: 10px;
       margin-left: 10px;
       overflow-y: hidden;
     }
+    #ff1{
+      margin-left: 100px;
+
+    }
 
     .forClassique {
+      position: relative;
       display: flex;
       justify-content: space-around;
       width: 90%;
@@ -154,6 +159,7 @@
       padding: 10px;
       border-radius: 10px;
       width: 400px;
+      height: 400px;
       background: linear-gradient(to top right, #352921, #df4213);
       color: aliceblue;
       margin-top: 10px;
@@ -192,7 +198,7 @@
       justify-content: center;
       align-items: center;
     }
-
+    
 
     @media screen and (max-width: 800px) {
       .link {
@@ -223,7 +229,7 @@
       .classique {
         padding: 10px;
         border-radius: 10px;
-        width: 400px;
+        width: 600px;
         background: linear-gradient(to top right, #352921, #df4213);
         color: aliceblue;
         margin: 10px;
@@ -241,7 +247,7 @@
       display: flex;
     }
     #ff1{
-      margin-left: 300px;
+      margin-left: 800px;
     }
 
     }
@@ -275,12 +281,13 @@
     </nav>
 
 
-    <div class="info">
-      <div id="ff1" class="lien3D"><a href="index.html?resetCache=true">Reset Cache (?)</a></div>
-      <div class="lien3D"><a href="index1.html">Index 1</a><br /></div>
-      <div class="lien3D"><a href="index2 Add Scene.html">Index 2 - Add Scene</a><br /></div>
-      <div class="lien3D"><a href="index3 Property.html">Index 3 - Property</a><br /></div>
-      <div class="lien3D"><a href="index4.html">Index 4 Objet</a><br /></div>
+    <div class="info" style="z-index: 10000000000000000000;">
+      <div id="ff1"></div>
+      <a  href="index.html?resetCache=true"><div  class="lien3D"><a href="index.html?resetCache=true">Reset Cache (?)</a></div></a>
+      <a href="index1.html"><div class="lien3D"><a href="index1.html">Index 1</a><br /></div></a>
+      <a href="index2 Add Scene.html"><div class="lien3D"><a href="index2 Add Scene.html">Index 2 - Add Scene</a><br /></div></a>
+      <a href="index3 Property.html"><div class="lien3D"><a href="index3 Property.html">Index 3 - Property</a><br /></div></a>
+      <a href="index4.html"><div class="lien3D"><a href="index4.html">Index 4 Objet</a><br /></div></a>
 
 
 
@@ -293,6 +300,7 @@
 
   </div>
   <div class="forClassique">
+    <div id="ff1"></div>
     <div class="classique" style="margin-left: 200px;"><em style="font-weight:bold; color: #ff45e0;">Reset Cache
         (?)</em> To refresh the same page by duplicating an exact copy (property of the
       <code>a href="index.html?resetCache=true"</code> tag).
