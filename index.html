@@ -14,9 +14,91 @@
       /* Ajout d'une marge pour éviter le débordement du canvas */
     }
 
-    a {
-      color: rgb(29, 114, 189);
+    header {
+      width: 100%;
+      height: 100vh;
+      /* background-position: center; */
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: scroll;
+      animation: bground 30s linear infinite;
+    }
+
+    @keyframes bground {
+      0% {
+        background-image: url('bgImg4.jpg');
+      }
+
+      40% {
+        background-image: url('bgImg1.jpg');
+      }
+
+      100% {
+        background-image: url('bgImg4.jpg');
+      }
+
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      color: #f1f1f1;
+      padding: 20px;
+      text-shadow: 2px 2px 2px #df4213;
+      font-weight: 600;
+      font-size: 18px;
+
+    }
+
+    .link {
+      display: flex;
+      justify-content: space-around;
+      gap: 70px;
+    }
+
+    nav a {
+      color: #f1f1f1;
+      text-decoration: dashed;
+    }
+
+    #buttonMenu {
+      display: none;
+    }
+
+    author {
+      font-weight: 800;
+      font-style: italic;
+      animation: textShadw 3s linear infinite;
+    }
+
+    @keyframes textShadw {
+      0% {
+        text-shadow: 20px 2px 2px #f5f2f2;
+      }
+
+      30% {
+        text-shadow: -20px 2px 2px #13df50;
+      }
+
+      60% {
+        text-shadow: 20px 2px 2px #df13bd;
+      }
+
+      80% {
+        text-shadow: -10px -2px 2px #ff4000
+      }
+
+      100% {
+        text-shadow: 20px 2px 2px #df13bd;
+      }
+
+    }
+
+
+    .lien3D {
       background-color: transparent;
+      display: flex;
+      justify-content: center;
       padding: 20px;
       overflow: hidden;
       overflow-y: hidden;
@@ -24,36 +106,141 @@
       filter: blur(0);
       border-radius: 10px;
     }
-    a::before{
+
+    .lien3D::before {
       content: "";
       position: fixed;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
-      background-color: #e66a442a;
-      filter: blur(5);
-      
+      background-color: #e66a4433;
+      filter: blur(10);
+      border: solid 2px rgba(255, 0, 255, 0.315);
+      z-index: -1;
+    }
+
+    .lien3D a {
+      color: #f3c09f;
+      font-weight: 700;
+      z-index: 1000;
+      text-wrap: nowrap;
     }
 
     .info {
-      padding: 20px;
       display: flex;
-      gap: 5px;
+      justify-content: space-around;
+      width: 90%;
+      margin-top: 100px;
+      height: 200px;
+      gap: 50px;
+      padding: 10px;
+      margin-left: 10px;
+      overflow-y: hidden;
+    }
+
+    .forClassique {
+      display: flex;
+      justify-content: space-around;
+      width: 90%;
+      margin-top: 100px;
+      gap: 50px;
+      padding: 10px;
+      margin-left: 10px;
       overflow-y: hidden;
     }
 
     .classique {
       padding: 10px;
-      width: 500px;
+      border-radius: 10px;
+      width: 400px;
       background: linear-gradient(to top right, #352921, #df4213);
       color: aliceblue;
-      margin: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-left: 100px;
+      margin-right: 100px;
     }
 
     #canvas {
-      width: 1000px;
+      width: 100%;
       height: 500px;
+    }
+
+
+    footer {
+      color: rgb(146, 136, 123);
+      padding: 50px;
+      border-top-right-radius: 40px;
+      border-top-left-radius: 40px;
+      font-size: 20px;
+    }
+
+    #footer {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h3 {
+      color: darkorange;
+    }
+
+    .center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    @media screen and (max-width: 800px) {
+      .link {
+        display: none;
+        /* Masque les éléments ayant la classe 'link' lorsque la largeur de l'écran est au plus 800 pixels */
+        max-width: 50%;
+        background-color: #352921;
+        justify-items: center;
+        align-items: start;
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+        font-size: 25px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+
+      }
+
+      #buttonMenu {
+        display: block;
+        /* Affiche l'élément ayant l'id 'buttonMenu' en tant qu'élément bloc */
+        font-size: 20px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-weight: 700;
+      }
+
+      .classique {
+        padding: 10px;
+        border-radius: 10px;
+        width: 400px;
+        background: linear-gradient(to top right, #352921, #df4213);
+        color: aliceblue;
+        margin: 10px;
+        font-size: 25px;
+      }
+
+      #footer {
+        width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      overflow-y: hidden;
+    }
+    .center{
+      display: flex;
+    }
+
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -61,28 +248,124 @@
 </head>
 
 <body>
-  <div class="info">
-    <a href="index1.html">Index 1</a><br />
-    <a href="index2 Add Scene.html">Index 2 - Add Scene</a><br />
-    <a href="index3 Property.html">Index 3 - Property</a><br />
-    <a href="index.html?resetCache=true">Reset Cache (?)</a>
-    
+  <header>
+    <nav>
+      <a href="index.html" id="logo">
+        <author>Christian Tukunda</author>
+      </a>
+      <div class="link">
+        <a href="https://christian0015.github.io/myself"><span> Visit Portefolio?</span></a>
+        <a href="#canvas"><span> view this 3D</span></a>
+        <a href="footer"><span> Adrees</span></a>
+        <a href="https://threejs.org/examples/#webgl_animation_keyframes"><span>Discovy ThreeJs</span></a>
+      </div>
+      <button id="buttonMenu" onclick="toggleLinks()">Menu</button>
+      <script>
+        function toggleLinks() {
+          var links = document.querySelectorAll('.link');
+          links.forEach(function (link) {
+            link.style.display = (link.style.display === 'none' || link.style.display === '') ? 'flex' : 'none';
+          });
+        }
+      </script>
+
+    </nav>
+
+
+    <div class="info">
+      <div class="lien3D"><a href="index.html?resetCache=true">Reset Cache (?)</a></div>
+      <div class="lien3D"><a href="index1.html">Index 1</a><br /></div>
+      <div class="lien3D"><a href="index2 Add Scene.html">Index 2 - Add Scene</a><br /></div>
+      <div class="lien3D"><a href="index3 Property.html">Index 3 - Property</a><br /></div>
+      <div class="lien3D"><a href="index4.html">Index 4 Objet</a><br /></div>
+
+
+
+
+
+
+  </header>
+
+
+
   </div>
-  <div class="info">
-    <div class="classique">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cum pariatur nam fugit
-      veritatis corrupti, error tenetur esse voluptas et dignissimos tempore. Ipsum dolor dicta nihil odio, debitis
-      animi fugiat?</div>
-    <div class="classique">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cum pariatur nam fugit
-      veritatis corrupti, error tenetur esse voluptas et dignissimos tempore. Ipsum dolor dicta nihil odio, debitis
-      animi fugiat?</div>
-    <div class="classique">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cum pariatur nam fugit
-      veritatis corrupti, error tenetur esse voluptas et dignissimos tempore. Ipsum dolor dicta nihil odio, debitis
-      animi fugiat?</div>
+  <div class="forClassique">
+    <div class="classique" style="margin-left: 200px;"><em style="font-weight:bold; color: #ff45e0;">Reset Cache
+        (?)</em> To refresh the same page by duplicating an exact copy (property of the
+      <code>a href="index.html?resetCache=true"</code> tag).
+    </div>
+
+    <div class="classique"><em style="font-weight:bold; color: #ff45e0;">Index 1</em> Displays a simple cube block in 3D
+      with a rotation around itself along the y-coordinate axis (property <code>rotateX</code>).</div>
+
+    <div class="classique"><em style="font-weight:bold; color: #ff45e0;">Index 2 - Add Scene</em> Displays a background
+      block, static without movement. <br> Additionally, a 3D cube is added with a rotation around itself along the
+      y-coordinate axis (property <code>rotateX</code>).</div>
+
+    <div class="classique"><em style="font-weight:bold; color: #ff45e0;">Index 3 - Property</em> Displays a 3D cube with
+      lighting + texture, and a rotation around itself along the y-coordinate axis (property <code>rotateX</code>).
+    </div>
+
+    <div class="classique"><em style="font-weight:bold; color: #ff45e0;">Index 4 Objet</em> Displays a 3D figure that is
+      a blend of objects, with a rotation around itself along the y-coordinate axis (property <code>rotateX</code>).
+    </div>
+
+    <div class="classique"><em style="font-weight:bold; color: #ff45e0;">No limit</em> More figures will be added in the
+      course of ThreeJs exploration. <br>Best regards, Christian Tukunda, CEO of MYCONSOL company.</div>
   </div>
-  <img id="myImage" src="sujet1.jpg" width="100" style="display: block;" />
+
+  <img id="myImage" src="sujet1.jpg" width="100" style="display: none;" />
 
   <br><br><br>
   <canvas id="canvas"></canvas>
+
+
+
+  <footer>
+    <div  id="footer">
+      <div>
+        <h3>About the Three.js Game</h3>
+        <p>Developed by Christian Tukunda for an immersive gaming experience. The game is designed to provide
+          entertainment and engagement for users. Dive into the world of Three.js and enjoy a thrilling gaming
+          adventure.</p>
+      </div>
+
+      <div>
+        <h3>Game License</h3>
+        <p>The Three.js game adheres to all relevant licenses and regulations. It is developed and distributed in
+          compliance with industry standards, ensuring a secure and enjoyable gaming environment.</p>
+      </div>
+
+      <div>
+        <h3>Security and Privacy</h3>
+        <p>We prioritize the security and privacy of our users. The game follows stringent security standards, and we
+          respect your privacy by ensuring confidentiality. Any permissions required will be requested before
+          proceeding with any actions.</p>
+      </div>
+
+      <div>
+        <h3>ThreeJs Game</h3>
+        <p>Web application Or Application PC and Mobile</p>
+      </div>
+    </div>
+
+    <div class="center">
+      <p>Web application Or Application PC and Mobile</p>
+    </div>
+
+    <div class="center" style="color: darkorange;">
+      <p>&copy; ThreejsGameMyconsol copyright 2024 </p>
+    </div>
+
+    <div class="center">
+      <p>Firdaous at Casablanca, Marocco </p>
+    </div>
+
+    <div class="center" style="color: darkorange; font-family: cursive;">
+      <p>-myconsol-christianTuk's</p>
+    </div>
+    </div>
+  </footer>
   <script>
     // Initialize canvas
     const canvas = document.getElementById("canvas");
@@ -100,7 +383,7 @@
     //  Cube
     const geometry = new THREE.BoxGeometry(1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load('c:\Users\HP\OneDrive\Documents\GitHub\E_Commerce\Axel.jpg');
+    const texture = new THREE.TextureLoader().load('Axel.jpg');
 
     const material = new THREE.MeshPhongMaterial({ map: texture });
 

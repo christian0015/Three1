@@ -40,18 +40,18 @@
 
 
 
-    //  Cube
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    // //  Cube
+    // const geometry = new THREE.BoxGeometry(1, 1, 1);
 
-    const texture = new THREE.TextureLoader().load('Axel.jpg');
+    // const texture = new THREE.TextureLoader().load('Axel.jpg');
 
-    const material = new THREE.MeshPhongMaterial({ map: texture });
+    // const material = new THREE.MeshPhongMaterial({ map: texture });
 
-    const mesh = new THREE.Mesh(geometry, material);
+    // const mesh = new THREE.Mesh(geometry, material);
 
     const light = new THREE.PointLight(0xeeeeee)
 
-    scene.add(mesh);
+    // scene.add(mesh);
     scene.add(light);
 
     camera.position.set(0, 0, 2);
@@ -72,17 +72,17 @@
 
 
 
-    // const loader = new THREE.GLTFLoader();
-    //     let gltfModel;
+    const loader = new THREE.GLTFLoader();
+        let gltfModel;
 
-    //     loader.load('scene.gltf', (gltf) => {
-    //       gltfModel = gltf.scene;
-    //       scene.add(gltfModel);
-    //       gltfModel.rotation.x = Math.PI / 2;
-    //       gltfModel.scale.set(1, 1, 1);
-    //     }, undefined, (error) => {
-    //       console.error('Erreur lors du chargement du modèle GLTF', error);
-    //     });
+        loader.load('scene.gltf', (gltf) => {
+          gltfModel = gltf.scene;
+          scene.add(gltfModel);
+          gltfModel.rotation.x = Math.PI / 2;
+          gltfModel.scale.set(1, 1, 1);
+        }, undefined, (error) => {
+          console.error('Erreur lors du chargement du modèle GLTF', error);
+        });
 
     // ************************** Lith Add *********************************
     // Ambient light
@@ -99,16 +99,16 @@
     // Anime All
     function loop() {
       requestAnimationFrame(loop);
-      // if (gltfModel) {
-      //           gltfModel.rotation.y += 0.01;}
+      if (gltfModel) {
+                gltfModel.rotation.y += 0.01;}
       mesh.rotation.y += 0.01; // Réduisez la vitesse de rotation si nécessaire
 
 
       // ************************* Anim Light Add *******************
       // Move the light in a circular path (optional)
-      // const time = performance.now() * 0.001;
-      // light.position.x = Math.sin(time) * 2;
-      // light.position.y = Math.cos(time) * 2;
+      const time = performance.now() * 0.001;
+      light.position.x = Math.sin(time) * 2;
+      light.position.y = Math.cos(time) * 2;
       renderer.render(scene, camera);
     }
 
